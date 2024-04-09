@@ -8,8 +8,9 @@ def pascal_triangle(n):
     """
     pascal's triangle
     """
+    empty_list = [[]]
     if n <= 0:
-        return []
+        return empty_list
     my_list = []
     while n > 0:
         for i in range(n):
