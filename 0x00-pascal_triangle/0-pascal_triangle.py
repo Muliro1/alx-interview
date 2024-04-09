@@ -17,7 +17,5 @@ def pascal_triangle(n):
                     temp_list.append(my_list[i - 1] [j - 1] + my_list[i - 1] [j])
             my_list.append(temp_list)
         n -= 1
-        break
-    else:
-        return([[]])  
+        break  
     return(my_list)
