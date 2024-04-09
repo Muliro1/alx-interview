@@ -2,8 +2,7 @@
 
 def pascal_triangle(n):
     if n <= 0:
-        n_list = []
-        return n_list
+        return []
     my_list = []
     for i in range(n):
         temp_list = []
@@ -14,5 +13,3 @@ def pascal_triangle(n):
                 temp_list.append(my_list[i - 1] [j - 1] + my_list[i - 1] [j])
         my_list.append(temp_list)
     return(my_list)
-
-    
