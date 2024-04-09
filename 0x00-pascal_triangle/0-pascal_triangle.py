@@ -18,4 +18,6 @@ def pascal_triangle(n):
             my_list.append(temp_list)
         n -= 1
         break
+    else:
+        return([[]])  
     return(my_list)
