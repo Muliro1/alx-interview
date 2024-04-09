@@ -21,5 +21,5 @@ def pascal_triangle(n):
         n -= 1
         break
     else:
-        return []
+        return [[]]
     return(my_list)
