@@ -22,7 +22,7 @@ if __name__ == "__main__":
     r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} - \[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d+\] "GET /projects/260 HTTP/1.1" (.{3}) (\d+)')  # nopep8
 
     l_count = 0
-    log = {}
+    log: dict = {}
     log["file_size"] = 0
     log["code_frequency"] = {
         str(code): 0 for code in [
