@@ -29,9 +29,9 @@ if __name__ == "__main__":
             200, 301, 400, 401, 403, 404, 405, 500]}
 
     try:
-        for l in sys.stdin:
-            l = l.strip()
-            match = regex.fullmatch(l)
+        for line in sys.stdin:
+            line = line.strip()
+            match = regex.fullmatch(line)
             if (match):
                 l_count += 1
                 code = match.group(1)
