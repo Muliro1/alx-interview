@@ -6,21 +6,19 @@ log parsing
 import sys
 import re
 
-
 def output(log: dict) -> None:
     """
     helper function to display stats
     """
     print("File size: {}".format(log["file_size"]))
-    for c in sorted(log["code_frequency"]):
-        if log["code_frequency"][c]:
-            print("{}: {}".format(c, log["code_frequency"][c]))
-
-
-if __name__ == "__main__":
-    regex = re.compile(
-    r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} - \[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d+\] "GET /projects/260 HTTP/1.1" (.{3}) (\d+)')  # nopep8
-
+    try:
+        for c in sorted(log["code_frequency"]):
+            if log["code_frequency"][c]:
+                print("{}: {}".format(c, log["code_frequency"][c]))
+        sys.stdout.flush()
+    except (BrokenPipeError, IOError):
+        print ('BrokenPipeError caught', file = sys.stderr)
+    sys.stderr.close()
     l_count = 0
     log: dict = {}
     log["file_size"] = 0
@@ -47,3 +45,7 @@ if __name__ == "__main__":
                     output(log)
     finally:
         output(log)
+
+if __name__ == "__main__":
+    regex = re.compile(
+    r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} - \[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d+\] "GET /projects/260 HTTP/1.1" (.{3}) (\d+)')  # nopep8
