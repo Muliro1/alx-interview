@@ -7,7 +7,10 @@ import sys
 
 def backtrack(r, n, cols, pos, neg, board):
     """
-    backtrack function to find solution
+    This code defines a backtrack function to find
+    solutions to a problem. It uses
+    backtracking to explore all possibilities by recursively
+    trying different options. It is written in Python
     """
     if r == n:
         res = []
