@@ -1,39 +1,40 @@
 #!/usr/bin/node
-
-// Importing the request library
-import request from 'request';
-
-// Function to make a request to each URL in an array
-const req = (arr, i) => {
-  // If we've reached the end of the array, stop recursion
-  if (i === arr.length) return;
-
-  // Make a request to the URL at the current index
-  request(arr[i], (err, response, body) => {
-    // If there's an error, throw it
-    if (err) {
-      throw err;
-    } else {
-      // Otherwise, log the name property of the parsed JSON response
-      console.log(JSON.parse(body).name);
-      // Recursively call the function with the next index
-      req(arr, i + 1);
-    }
+/**
+ * Wrapper function for request object that allows it
+ * to be used with async/await syntax.
+ * @param {string} url - URL to request
+ * @returns {Promise}
+ * @see https://www.npmjs.com/package/request
+ */
+function makeRequest (url) {
+  const request = require('request');
+  return new Promise((resolve, reject) => {
+    request.get(url, (error, response, body) => {
+      if (error) reject(error);
+      else resolve(JSON.parse(body));
+    });
   });
-};
+}
 
-// Make a request to the Star Wars API for a specific film
-request(
-  `https://swapi-api.hbtn.io/api/films/${process.argv[2]}`,
-  (err, response, body) => {
-    // If there's an error, throw it
-    if (err) {
-      throw err;
-    } else {
-      // Otherwise, get the characters array from the parsed JSON response
-      const chars = JSON.parse(body).characters;
-      // Call the req function with the characters array and starting index 0
-      req(chars, 0);
-    }
+/**
+ * Entry point - makes requests to Star Wars API
+ * for movie info based movie ID passed as a CLI parameter.
+ * Retrieves movie character info then prints their names
+ * in order of appearance in the initial response.
+ */
+async function main () {
+  const args = process.argv;
+
+  if (args.length < 3) return;
+
+  const movieUrl = 'https://swapi-api.alx-tools.com/api/films/' + args[2];
+  const movie = await makeRequest(movieUrl);
+
+  if (movie.characters === undefined) return;
+  for (const characterUrl of movie.characters) {
+    const character = await makeRequest(characterUrl);
+    console.log(character.name);
   }
-);
+}
+
+main();
