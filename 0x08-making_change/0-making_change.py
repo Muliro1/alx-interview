@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """Making Change Problem"""
 
-
 def makeChange(coins, total):
     """
-    The function generates the minimum number of coins required to make change
+    The function generates the minimum number of
+    coins required to make change
     for a given total.
 
     Args:
@@ -12,7 +12,8 @@ def makeChange(coins, total):
         total (int): Total amount.
 
     Returns:
-        int: Minimum number of coins required to make change.
+        int: Minimum number of coins
+        required to make change.
         -1: if change is not possible.
     """
 
