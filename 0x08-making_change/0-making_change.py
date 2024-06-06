@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Making Change Problem"""
 
+
 def makeChange(coins, total):
     """
     The function generates the minimum number of
