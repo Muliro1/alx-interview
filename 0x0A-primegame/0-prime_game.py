@@ -47,7 +47,7 @@ def isWinner(numRounds, roundValues):
         return None
     
     # Initialize scores for Maria and Ben.
-    mariaScore = benScore = 0
+    maria_score = ben_score = 0
     
     # Iterate through each round.
     for i in range(numRounds):
@@ -57,15 +57,15 @@ def isWinner(numRounds, roundValues):
         # Check if the number of prime numbers is even or odd.
         if len(primes) % 2 == 0:
             # If even, increment Ben's score.
-            benScore += 1
+            ben_score += 1
         else:
             # If odd, increment Maria's score.
-            mariaScore += 1
+            maria_score += 1
     
     # Determine the winner based on the scores.
-    if mariaScore > benScore:
+    if maria_score > ben_score:
         return "Maria"
-    elif benScore > mariaScore:
+    elif ben_score > maria_score:
         return "Ben"
     
     # If no winner, return None.
