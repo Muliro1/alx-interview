@@ -13,7 +13,7 @@ def generatePrimeNumbers(limit):
         list: A list of prime numbers up to the given limit
     """
     # Initialize empty list to store prime numbers
-    primeNumbers = []
+    primes = []
     # Create a boolean list where each index corresponds to a number from 2 to limit + 1
     sieveList = [True] * (limit + 1)
     
@@ -22,13 +22,13 @@ def generatePrimeNumbers(limit):
         # If the number is considered prime according to the sieve list
         if sieveList[potentialPrime]:
             # Add the number to the list of prime numbers
-            primeNumbers.append(potentialPrime)
+            primes.append(potentialPrime)
             # Mark all multiples of the number in the sieve list as non-prime
             for multiple in range(potentialPrime, limit + 1, potentialPrime):
                 sieveList[multiple] = False
     
     # Return the list of prime numbers
-    return primeNumbers
+    return primes
 
 
 def isWinner(numRounds, roundValues):
